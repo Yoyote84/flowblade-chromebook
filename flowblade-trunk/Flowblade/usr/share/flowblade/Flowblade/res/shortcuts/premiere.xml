@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Shortcut configuration file for Flowblade.
+  Apr-2017 - SvdB
+  Each config file should contain a single set of shortcuts
+
+  The attribute 'name' in the <flowblade> tag should be the same as the file name.
+  The filename will be displayed in the application preferences screen.
+
+  The author tag is optional.
+
+  The shortcuts tag is mandatory.
+
+  There must be at least one event tag. Missing event tags will use the default
+  Flowblade values.
+
+  The code attribute is used internally. Unknown code values will be ignored.
+
+  The name attribute is optional but used for clarity.
+
+  There can be multiple event lines for the same code. The defined shortcuts
+  will all be usable. 
+  The modifiers attribute can contain any combination of modifiers and are
+  applied together with the key. The format is Ctrl+Alt, i.e. separated by +
+  If no modifiers attribute is given then no modifier will be needed or allowed.
+
+  The modifiers are defined as follows:
+  Ctrl, Alt, Meta (Typically Windows key), Shift, Any
+  'Any' is a special case where modifier states are not actually checked
+  to determine the action. This is used for ffwd / rev where the modifiers ARE
+  used, but hardcoded in the application.
+  If you have CapsLock engaged on your keyboard it will equate to SHIFT.
+  Others may be added later.
+  Case is not important for the modifiers, so ALT and Alt and alt are all the same.
+  Case IS important for the code attribute.
+  
+  At the moment there is no difference between left/right Shift or Ctrl.
+  Non alpha-numerical keys can be referenced by their key name:
+  insert delete home space end page_up page_down up down left right
+  f1..f12 kp_divide kp_multiply kp_subtract kp_add kp_enter kp_decimal
+  kp_0..kp_9
+  NB: The Keypad numbers have a different assignment to the 'normal' numbers.
+  If you want a shortcut for the Keypad numbers, use kp_0..kp_9 instead of 0..9
+
+  The keys used can be typed normally in this file. Alphabetical keys MUST be
+  lower case. If you want to use upper case, then use the Shift
+  modifier.
+-->
+<flowblade file='shortcuts' name='Premiere-ish/ US keyboard' editable='False' comment='Default values'>
+  <author name='me'>
+    <name>Steven van de Beek</name>
+    <date format='dd-Mmm-yyyy'>16-Apr-2017</date>
+  </author>
+  <shortcuts>
+    <event code='mark_in' name='Mark In'>i</event>
+    <event code='mark_out' name='Mark Out'>o</event>
+    <event code='to_mark_in' name='Go To Mark In' modifiers='ALT'>i</event>
+    <event code='to_mark_out' name='Go To Mark Out' modifiers='ALT'>o</event>
+    <event code='clear_io_marks' name='Clear In/Out Marks' modifiers='ALT'>k</event>
+    <event code='play_pause' name='Play / Pause'>space</event>
+    <event code='prev_cut' name='Go To Previous Cut'>up</event>
+    <event code='next_cut' name='Go To Next Cut'>down</event>
+    <event code='prev_frame' name='Go To Previous Frame' modifiers='Any'>left</event>
+    <event code='next_frame' name='Go To Next Frame' modifiers='Any'>right</event>
+    <event code='insert' name='Insert'>y</event>
+    <event code='insert' name='Insert' modifiers='SHIFT'>y</event>
+    <event code='append' name='Append'>u</event>
+    <event code='append' name='Append' modifiers='SHIFT'>u</event>
+    <event code='append_from_bin' modifiers='ALT' name='Append Selected Media From Bin'>a</event>
+    <event code='slower' name='Slower'>j</event>
+    <event code='stop' name='Stop'>k</event>
+    <event code='faster' name='Faster'>l</event>
+    <event code='log_range' name='Log Range' modifiers='CTRL'>l</event>
+    <event code='resync' name='Resynchronization' modifiers='ALT'>r</event>
+    <event code='clear_filters' name='Clear Filters' modifiers='ALT'>c</event>
+    <event code='split_selected' name='Split Audio Synched' modifiers='ALT'>s</event>
+    <event code="sync_all" name="Sync All Compositors" modifiers="CTRL+ALT">s</event>
+    <event code='delete' name='Delete'>delete</event>
+    <event code='lift' name='Lift' modifiers='CTRL'>delete</event>
+    <event code='to_start' name='Go To Start'>home</event>
+    <event code='to_end' name='Go To End'>end</event>
+    <event code='3_point_overwrite' name='Three Point Overwrite'>t</event>
+    <event code='overwrite_range' name='Overwrite Range'>r</event>
+    <event code='cut' name='Cut Active Tracks'>x</event>
+    <event code='cut_all' name='Cut All Tracks' modifiers='SHIFT'>x</event>
+    <event code='zoom_out' name='Zoom Out'>minus</event>
+    <event code='zoom_in' name='Zoom In'>equal</event>
+    <event code='zoom_in' name='Zoom In' modifiers='SHIFT'>equal</event>
+    <event code='switch_monitor' name='Switch Monitor Display'>tab</event>
+    <event code='add_marker' name='Add Marker'>m</event>
+    <event code='enter_edit' name='Enter Editing Mode'>return</event>
+    <event code='nudge_back' name='Nudge Move Selection Back 1 Frame'>comma</event>
+    <event code='nudge_forward' name='Nudge Move Selection Forward 1 Frame'>period</event>
+    <event code='nudge_back_10' name='Nudge Move Selection Back 10 Frames'  modifiers='CTRL'>comma</event>
+    <event code='nudge_forward_10' name='Nudge Move Selection Forward 10 Frames' modifiers='CTRL'>period</event>
+    <event code='open_next' name='Open Next Media Item In Monitor' modifiers='ALT'>n</event>
+    <event code='select_next' name='Open Next Clip In Filter Editor' modifiers='ALT'>up</event>
+    <event code='select_prev' name='Open Previous Clip In Filter Editor' modifiers='ALT'>down</event>
+    <event code='play_pause_loop_marks' name='Play / Pause Mark In to Mark Out Loop' modifiers='CTRL'>space</event>
+    <event code='trim_start' name='Trim Clip Start To Playhead'>q</event>
+    <event code='trim_end' name='Trim Clip End To Playhead'>w</event>
+    <event code='tline_render_request' name='Render Timeline Range' modifiers='ALT'>t</event>
+    <event code='toggle_track_output' name='Toggle Track Output Enabled/Disabled' modifiers='CTRL'>d</event>
+    <event code='tline_page_up' name='Timeline Vertical Page Up'>page_up</event>
+    <event code='tline_page_down' name='Timeline Vertical Page Down'>page_down</event>
+    <event code='move_media' name='Move Selected Media items' modifiers='ALT'>m</event>
+    <event code='monitor_show_video' name='Monitor Show Video' modifiers='ALT'>1</event>
+    <event code='monitor_show_scope' name='Monitor Show Vectorscope' modifiers='ALT'>2</event>
+    <event code='monitor_show_rgb' name='Monitor Show RGB Parade' modifiers='ALT'>3</event>
+  </shortcuts>
+</flowblade>

@@ -1,0 +1,15 @@
+Metadata-Version: 2.2
+Name: flowblade
+Version: 2.20
+Summary: Non-linear video editor
+Home-page: https://github.com/jliljebl/flowblade
+Author: Janne Liljeblad
+Author-email: janne.liljeblad at gmail dot com
+License: GNU GPL3
+License-File: COPYING
+License-File: AUTHORS
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license
+Dynamic: summary
