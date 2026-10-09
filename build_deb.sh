@@ -175,6 +175,11 @@ INSTALL
 echo ""
 echo "[7/7] Copie des fichiers modifiés et optimisations..."
 
+# Création des répertoires de destination
+mkdir -p "$BUILD_DIR/usr/lib/flowblade/tools"
+mkdir -p "$BUILD_DIR/usr/share/flowblade/res/render"
+mkdir -p "$BUILD_DIR/usr/share/flowblade/Flowblade"
+
 # Module Node Editor
 cp "$FLOWBLADE_DIR/usr/share/flowblade/Flowblade/tools/nodeditor.py" "$BUILD_DIR/usr/lib/flowblade/tools/nodeditor.py"
 
