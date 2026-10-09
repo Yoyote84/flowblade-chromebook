@@ -34,8 +34,9 @@ jobs:
             libgtk-3-dev \
             libmlt-dev \
             libjson-glib-dev \
-            intltool \
-            gettext
+intltool \
+      gettext \
+      libgirepository1.0-dev
 
       - name: Install pip dependencies
         run: |
