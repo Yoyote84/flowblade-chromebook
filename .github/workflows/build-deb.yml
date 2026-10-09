@@ -1,0 +1,74 @@
+name: Build Flowblade .deb Package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            debhelper \
+            dh-make \
+            build-essential \
+            python3-setuptools \
+            python3-gi \
+            python3-cairo \
+            gir1.2-gtk-3.0 \
+            libgtk-3-dev \
+            libmlt6-dev \
+            libjson-glib-dev \
+            intltool \
+            gettext
+
+      - name: Install pip dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install mlt7 pycairo pygobject
+
+      - name: Run build script
+        run: |
+          chmod +x build_deb.sh
+          ./build_deb.sh
+
+      - name: Verify .deb was created
+        run: |
+          ls -la build/*.deb
+
+      - name: Upload .deb as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flowblade-debian-package
+          path: build/flowblade_*.deb
+          retention-days: 30
+
+      - name: Display download instructions
+        run: |
+          echo "========================================="
+          echo " .deb package prêt !"
+          echo "========================================="
+          echo ""
+          echo "Pour installer sur votre Chromebook (Debian 13.7 / Crostini) :"
+          echo "1. Téléchargez le fichier ci-dessus depuis l'onglet 'Artifacts'"
+          echo "2. Transférez-le vers votre Chromebook via SSH ou scp"
+          echo "3. Installez : dpkg -i flowblade_2.20-1_arm64.deb"
+          echo ""
+          echo "Ou en ligne de commande :"
+          echo "curl -L workflow_artifact_url | dpkg -i /dev/stdin"
+          echo "========================================="
