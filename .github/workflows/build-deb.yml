@@ -40,6 +40,7 @@ jobs:
             gettext \
             libgirepository1.0-dev \
             libglib2.0-dev \
+            gobject-introspection \
             pkg-config \
             || { echo "Échec de l'installation des dépendances"; exit 1; }
 
