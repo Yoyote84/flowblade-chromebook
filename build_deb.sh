@@ -27,7 +27,7 @@ echo "========================================="
 # 1. Vérification des dépendances
 # -------------------------------------------------------------------------
 echo ""
-echo "[1/7] Vérification des dépendances..."
+echo "[1/8] Vérification des dépendances..."
 
 if ! command -v dpkg-deb &>/dev/null; then
     echo "⚠  dpkg-deb non trouvé - Installation requise"
@@ -35,7 +35,6 @@ if ! command -v dpkg-deb &>/dev/null; then
     echo "   Ou dans Crostini : apk add dpkg devscripts build-essential"
 fi
 
-# Vérifier Python3
 if ! python3 --version &>/dev/null; then
     echo "✗ Python3 non trouvé"
     exit 1
@@ -47,11 +46,13 @@ fi
 # 2. Création de la structure de build
 # -------------------------------------------------------------------------
 echo ""
-echo "[2/7] Création de la structure de build..."
+echo "[2/8] Création de la structure de build..."
 
 rm -rf "$BUILD_DIR"
 mkdir -p "$DEBIAN_DIR"
-mkdir -p "$BUILD_DIR/opt/flowblade"
+mkdir -p "$BUILD_DIR/usr/lib/flowblade/tools"
+mkdir -p "$BUILD_DIR/usr/share/flowblade/res/render"
+mkdir -p "$BUILD_DIR/usr/share/flowblade/Flowblade"
 mkdir -p "$BUILD_DIR/usr/share/applications"
 mkdir -p "$BUILD_DIR/usr/share/pixmaps"
 mkdir -p "$BUILD_DIR/usr/lib/flowblade"
@@ -170,15 +171,10 @@ usr/share/doc/flowblade/copyright
 INSTALL
 
 # -------------------------------------------------------------------------
-# 7. Copie des fichiers modifiés et optimisés
+# 7. Copie des fichiers modifiés et optimisations
 # -------------------------------------------------------------------------
 echo ""
 echo "[7/7] Copie des fichiers modifiés et optimisations..."
-
-# Création des répertoires de destination
-mkdir -p "$BUILD_DIR/usr/lib/flowblade/tools"
-mkdir -p "$BUILD_DIR/usr/share/flowblade/res/render"
-mkdir -p "$BUILD_DIR/usr/share/flowblade/Flowblade"
 
 # Module Node Editor
 cp "$FLOWBLADE_DIR/usr/share/flowblade/Flowblade/tools/nodeditor.py" "$BUILD_DIR/usr/lib/flowblade/tools/nodeditor.py"
@@ -189,7 +185,7 @@ cp "$FLOWBLADE_DIR/usr/share/flowblade/Flowblade/res/render/renderencoding.xml" 
 # Fichier principal editorwindow.py (avec NodeEditor et import nodeditor)
 cp "$FLOWBLADE_DIR/usr/share/flowblade/Flowblade/editorwindow.py" "$BUILD_DIR/usr/share/flowblade/Flowblade/editorwindow.py"
 
-# Scripts tools (module Node Editor)
+# Scripts tools
 cp "$FLOWBLADE_DIR/usr/share/flowblade/Flowblade/tools/nodeditor.py" "$BUILD_DIR/usr/lib/flowblade/tools/nodeditor.py" 2>/dev/null || true
 
 # Icones et desktop (s'ils existent)
@@ -220,15 +216,7 @@ echo "  - $BUILD_DIR/usr/lib/flowblade/tools/nodeditor.py  (module Node Editor)"
 echo "  - $BUILD_DIR/usr/share/flowblade/res/render/renderencoding.xml  (optimisations proxy)"
 echo "  - $BUILD_DIR/usr/share/flowblade/Flowblade/editorwindow.py  (menu Tools -> Node Editor)"
 echo ""
-echo "Generation du paquet .deb en cours..."
-cd "$BUILD_DIR" && debuild -us -uc
-echo ""
-echo "Paquet .deb cree avec succes !"
-echo "Emplacement : ../flowblade_2.20-1_$(dpkg --print-architecture).deb"
-echo ""
-echo "========================================="
-echo "Tutoriel d'installation :"
-echo "  1. Telecharger le fichier .deb ci-dessus"
-echo "  2. Sur Chromebook : dpkg -i flowblade_2.20-1_arm64.deb"
-echo "  3. Profitez de Flowblade avec Node Editor et proxy optimise !"
+echo "Etapes suivantes manuelles :"
+echo "  1. cd $BUILD_DIR && debuild -us -uc"
+echo "  2. Installer : dpkg -i ../flowblade_2.20-1_*.deb"
 echo "========================================="
