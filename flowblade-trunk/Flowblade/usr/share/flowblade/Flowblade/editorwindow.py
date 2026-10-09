@@ -71,6 +71,7 @@ import projectdatavaultgui
 import projectinfogui
 import proxyediting
 import scripttool
+import nodeditor
 import shortcuts
 import shortcutsdialog
 import singletracktransition
@@ -904,6 +905,7 @@ class EditorWindow:
             ('GMIC', None, _("G'MIC Effects"), None, None, lambda a:gmic.launch_gmic()),
             ('Scripttool', None, _("Generator Script Editor"), None, None, lambda a:scripttool.launch_scripttool()),
             ('MediaLink', None, _('Media Relinker'), None, None, lambda a:medialinker.display_linker()),
+            ('NodeEditor', None, _('Node Editor'), None, None, lambda a:nodeditor.launch_node_editor()),
             ('HelpMenu', None, _('_Help')),
             ('QuickReference', None, _('Contents'), None, None, lambda a:menuactions.quick_reference()),
             ('QuickReferenceWeb', None, _('Contents Web'), None, None, lambda a:menuactions.quick_reference_web()),
@@ -1050,6 +1052,8 @@ class EditorWindow:
                     <menuitem action='Scripttool'/>
                     <separator/>
                     <menuitem action='MediaLink'/>
+                    <separator/>
+                    <menuitem action='NodeEditor'/>
                 </menu>
                 <menu action='HelpMenu'>
                     <menuitem action='QuickReference'/>
