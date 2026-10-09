@@ -40,7 +40,7 @@ jobs:
       - name: Install pip dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install mlt7 pycairo pygobject
+          python3 -m pip install pycairo pygobject
 
       - name: Run build script
         run: |
