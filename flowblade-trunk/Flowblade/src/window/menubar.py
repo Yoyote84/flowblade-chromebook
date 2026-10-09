@@ -566,6 +566,12 @@ def get_menu():
         </section>
         <section>
         <item>
+          <attribute name="label">""" + _("Node Editor...") + """</attribute>
+          <attribute name="action">app.node_editor</attribute>
+        </item>
+        </section>
+        <section>
+        <item>
           <attribute name="label">""" + _("Audio Mixer") + """</attribute>
           <attribute name="action">app.showaudiomixer</attribute>
         </item>

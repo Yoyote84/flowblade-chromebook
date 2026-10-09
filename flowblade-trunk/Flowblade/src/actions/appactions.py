@@ -127,6 +127,7 @@ def create_actions():
     _create_action("zoomin", lambda w, a: updater.zoom_in(), shortcuts.get_shortcut_kb_str(root, "zoom_in", True))
     _create_action("zoomout", lambda w, a: updater.zoom_out(), shortcuts.get_shortcut_kb_str(root, "zoom_out", True))
     _create_action("zoomfit", lambda w, a: updater.zoom_project_length(), shortcuts.get_shortcut_kb_str(root, "zoom_fit", True))
+    _create_action("node_editor", lambda w, a: menuactions.launch_node_editor(), shortcuts.get_shortcut_kb_str(root, "node_editor", True))
     _create_action("addmedia", lambda w, a:  projectaction.add_media_files(), shortcuts.get_shortcut_kb_str(root, "add_media", True))
     _create_action("addimgseq", lambda w, a: projectaction.add_image_sequence())
     _create_action("addgenerator", lambda w, a: mediaplugin.show_add_media_plugin_window())

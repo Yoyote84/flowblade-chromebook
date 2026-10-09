@@ -26,6 +26,8 @@ This module handles the less central actions inited by user from menu.
 from gi.repository import Gtk, GLib
 
 import threading
+import subprocess
+import os
 import webbrowser
 import time
 
@@ -237,20 +239,17 @@ def _create_new_kb_shortcuts_group(dialog, response_id, entry):
     if response_id != Gtk.ResponseType.CANCEL:
         name = entry.get_text()
         if name == "": # No need for info dialog, user should really get this.
-            dialog.destroy()
-            return
-        custom_xml_file_name = shortcuts.create_custom_shortcuts_xml(name)
-        editorpersistance.prefs.shortcuts = custom_xml_file_name
-        editorpersistance.save()
-        shortcuts.shortcut_files.append(custom_xml_file_name)
-        root = shortcuts.get_root()
-        shortcuts.shortcut_files_display_names.append(root.get('name'))
-        shortcuts.set_keyboard_shortcuts()
-        mutabletooltips.init()
-        shortcutsdialog.update_shortcuts_combo(shortcutsdialog.shortcuts_combo)
-        shortcutsdialog.display_keyboard_shortcuts(editorpersistance.prefs.shortcuts, workflow.get_tline_tool_working_set(), shortcutsdialog.scroll_hold_panel)
-        
-    dialog.destroy()
+dialog.destroy()
+
+def launch_node_editor(action=None):
+    """ Lance l'éditeur de nœuds Flowblade-chromebook en tâche de fond """
+    script_path = os.path.expanduser("~/flowblade-chromebook/node_editor_test.py")
+    if os.path.exists(script_path):
+        env = os.environ.copy()
+        env["GDK_BACKEND"] = "x11"
+        subprocess.Popen(["python3", script_path], env=env)
+    else:
+        print(f"Erreur : Impossible de trouver {script_path}")
 
 def _delete_new_kb_shortcuts_group(dialog, response_id):
     if response_id == Gtk.ResponseType.ACCEPT:
