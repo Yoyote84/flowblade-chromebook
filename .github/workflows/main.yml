@@ -1,0 +1,31 @@
+name: Test node_editor_script
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-gi python3-cairo gir1.2-gtk-3.0
+
+      - name: Verify script can be imported
+        run: |
+          python3 -c "import gi; gi.require_version('Gtk', '3.0'); from gi.repository import Gtk; print('Import OK')"
